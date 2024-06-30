@@ -7,7 +7,10 @@ for a_z in os.listdir(from_path):
     if os.path.isdir(folder):
         for fun_name in os.listdir(folder):
             path = os.path.join(folder, fun_name)
-            path_new = os.path.join(folder, fun_name.replace(" ", "_"))
-            if path != path_new:
-                print(path_new, path)
+            if not os.path.isdir(path):
+                f = path.replace(".md", "")
+                if not os.path.exists(f):
+                    os.mkdir(f)
+
+                path_new = os.path.join(f, fun_name)
                 os.rename(path, path_new)
